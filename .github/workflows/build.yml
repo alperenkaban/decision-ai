@@ -50,7 +50,7 @@ jobs:
         working-directory: 'Yeni klasör'
         
       - name: Upload iOS Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-ios
           path: 'Yeni klasör/build/ios/iphoneos/Runner.app'
