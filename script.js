@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainTitle = document.getElementById('mainTitle');
     const mainSubtitle = document.getElementById('mainSubtitle');
 
-    const API_KEY = 'YOUR_API_KEY_HERE';
     const MAX_OPTIONS = 20;
 
     let optionCount = 0;

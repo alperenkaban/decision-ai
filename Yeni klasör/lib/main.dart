@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'api_key.dart';
 
 void main() {
   runApp(const DecisionAIApp());
@@ -35,7 +36,6 @@ class DecisionScreen extends StatefulWidget {
 }
 
 class _DecisionScreenState extends State<DecisionScreen> with TickerProviderStateMixin {
-  final String apiKey = 'YOUR_API_KEY_HERE';
   final int maxOptions = 20;
 
   List<TextEditingController> controllers = [];

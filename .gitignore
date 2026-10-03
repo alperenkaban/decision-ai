@@ -11,3 +11,7 @@
 
 # Windows
 Thumbs.db
+
+# API Keys
+config.js
+Yeni klasör/lib/api_key.dart
