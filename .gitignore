@@ -1,0 +1,13 @@
+# Flutter/Dart
+**/build/
+**/.dart_tool/
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/pubspec.lock
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
