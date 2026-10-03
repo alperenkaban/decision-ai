@@ -1,0 +1,56 @@
+name: Flutter Build
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      
+      # Gerekli API Key dosyasini olusturur
+      - name: Create API Key file
+        run: echo "const String apiKey = '${{ secrets.API_KEY }}';" > "Yeni klasör/lib/api_key.dart"
+      
+      - run: flutter pub get
+        working-directory: 'Yeni klasör'
+        
+      - run: flutter build apk --release
+        working-directory: 'Yeni klasör'
+        
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: 'Yeni klasör/build/app/outputs/flutter-apk/app-release.apk'
+
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          
+      # Gerekli API Key dosyasini olusturur
+      - name: Create API Key file
+        run: echo "const String apiKey = '${{ secrets.API_KEY }}';" > "Yeni klasör/lib/api_key.dart"
+        
+      - run: flutter pub get
+        working-directory: 'Yeni klasör'
+        
+      # Sadece build aliyoruz, imzalama yapmiyoruz (Sertifika gerektigi icin)
+      - run: flutter build ios --release --no-codesign
+        working-directory: 'Yeni klasör'
+        
+      - name: Upload iOS Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-ios
+          path: 'Yeni klasör/build/ios/iphoneos/Runner.app'
