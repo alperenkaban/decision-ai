@@ -132,6 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const answer = await fetchGeminiDecision(API_KEY, options, topic);
             showResult(answer);
+            
+            // Seçenekleri ve bağlamı temizle
+            if (topicInput) topicInput.value = '';
+            optionsContainer.innerHTML = '';
+            optionCount = 0;
+            addOptionInput();
+            addOptionInput();
         } catch (error) {
             console.error(error);
             // Hatanın gerçek nedenini ekranda göster

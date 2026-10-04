@@ -113,6 +113,11 @@ class _DecisionScreenState extends State<DecisionScreen> with TickerProviderStat
       final answer = await _fetchGeminiDecision(options, topic);
       setState(() {
         resultText = answer;
+        _topicController.clear();
+        for (var c in controllers) { c.clear(); }
+        controllers.clear();
+        _addOption();
+        _addOption();
       });
     } catch (e) {
       setState(() {
@@ -132,7 +137,7 @@ class _DecisionScreenState extends State<DecisionScreen> with TickerProviderStat
 Kullanıcı sana numaralandırılmış seçenekler sunacak.''';
 
     if (topic.isNotEmpty) {
-      systemPrompt += '\\nKullanıcının karar vermek istediği konu şudur: "\$topic"\\nKararını mutlaka bu bağlama uygun olarak ver.';
+      systemPrompt += '\\nKullanıcının karar vermek istediği konu şudur: "$topic"\\nKararını mutlaka bu bağlama uygun olarak ver.';
     }
 
     systemPrompt += '''
